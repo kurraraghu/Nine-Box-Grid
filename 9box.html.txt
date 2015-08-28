@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="800" height="800" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+//var lines=[
+//{x:100 , y: 100, lx:100 ,ly:700 },
+//{x:300 , y: 100, lx:300 ,ly:700 },
+//{x:500 , y: 100, lx:500 ,ly:700 },
+//{x:700 , y: 100, lx:700 ,ly:700 },
+
+//{x:100 , y: 300, lx:700 ,ly:300 },
+//{x:300 , y: 300, lx:300 ,ly:300 },
+//{x:500 , y: 300, lx:500 ,ly:300 },
+
+//{x:200 , y: 500, lx:700 ,ly:500 },
+//{x:300 , y: 500, lx:300 ,ly:500 },
+//{x:500 , y: 500, lx:500 ,ly:500 },
+
+//] 
+
+//for(var i in lines){
+//var o=lines[i];
+//ctx.moveTo(o.x,o.y);
+//ctx.lineTo(o.lx,o.ly);
+//ctx.stroke();
+//}
+
+
+var boxs=[
+{x: 50,y:50,style: "#FF8B00"},
+{x: 50,y:250,style: "#FF8B00"},
+{x: 50,y:450,style: "#FF3900"},
+
+{x: 250,y:50,style: "#00C65C"},
+{x: 250,y:250,style: "#FF8B00"},
+{x: 250,y:450,style: "#FF8B00"},
+
+{x: 450,y:50,style: "#00C65C"},
+{x: 450,y:250,style: "#00C65C"},
+{x: 450,y:450,style: "#FF8B00"},
+];
+
+for (var i in boxs) {
+    var o = boxs[i];
+    ctx.fillStyle = o.style;
+    ctx.fillRect(o.x, o.y, 200, 200);
+    ctx.stroke();
+    ctx.strokeStyle = "#757D75";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(o.x, o.y, 200, 200);
+}
+
+var plots = [
+{"name":"Raghu", "pot": 7, "perf" : 7 },
+{"name":"Kurra", "pot": 2, "perf" : 4 },
+{"name":"Rajeev", "pot": 3, "perf" : 1 },
+{"name":"Kumar", "pot": 6, "perf" : 1 },
+{"name":"Vani", "pot": 4, "perf" : 4 }
+];
+w = 600;
+h = 600;
+var total = 7;
+var intercept = (w / total);
+plots.forEach(function(val) {
+    var x = ((intercept * val.perf)) + 50;
+    var y = (w - (intercept * val.pot)) + 50;
+    //plot performance and potential
+    ctx.fillStyle = "#000000";
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fill();
+    //names
+    ctx.font = "10px Arial";
+    ctx.fillText(val.name, x, y);
+});
+
+
+
+
+</script>
+
+</body>
+</html>
